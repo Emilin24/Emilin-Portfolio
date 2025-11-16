@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emilin Sana K S - Portfolio (Aurora Theme)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 1. Reset and Base Styles */
+        :root {
+            --primary-color: #e0e7ff; /* Light text for dark background */
+            --secondary-color: #a7b2d0; /* Muted light text */
+            --accent-color: #5eead4; /* Teal/cyan for highlights - reminiscent of aurora */
+            --bg-color-dark: #0a0a2a; /* Deep dark blue */
+            --bg-color-light: #1c1f4e; /* Slightly lighter deep blue */
+            --card-bg: rgba(255, 255, 255, 0.08); /* Semi-transparent card */
+            --border-color: rgba(255, 255, 255, 0.15); /* Lighter border for contrast */
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color-dark);
+            color: var(--primary-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .aurora-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -10;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #aurora-bg {
+            position: absolute;
+            top: -100%;
+            left: -50%;
+            width: 200%;
+            height: 300%;
+            
+            /* Reverted Aurora background to previous subtle version */
+            background-image: 
+                /* Soft Teal */
+                radial-gradient(ellipse at 20% 30%, hsla(160, 100%, 50%, 0.15) 0%, transparent 40%),
+                /* Soft Purple */
+                radial-gradient(ellipse at 80% 40%, hsla(270, 70%, 50%, 0.15) 0%, transparent 40%),
+                /* Soft Blue */
+                radial-gradient(ellipse at 50% 70%, hsla(220, 100%, 60%, 0.15) 0%, transparent 40%),
+                /* Soft Green */
+                radial-gradient(ellipse at 30% 90%, hsla(140, 70%, 50%, 0.15) 0%, transparent 40%),
+                /* Original static gradients from body */
+                radial-gradient(at 0% 100%, hsla(240, 70%, 15%, 0.8) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(270, 70%, 15%, 0.8) 0px, transparent 50%),
+                linear-gradient(to top right, var(--bg-color-dark), var(--bg-color-light));
+            
+            background-color: var(--bg-color-dark);
+            filter: blur(80px); /* Reverted to original blur */
+            will-change: transform;
+            background-blend-mode: overlay; /* Reverted to original blend mode */
+            transform: translateY(0px);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+        
+        section:first-of-type {
+            padding-top: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(94, 234, 212, 0.4);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #20c997;
+        }
+
+        /* 2. Header and Navigation */
+        .header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(10, 10, 42, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .nav-logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--secondary-color);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color);
+            text-shadow: 0 0 8px rgba(94, 234, 212, 0.6);
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* 3. Hero Section */
+        #home {
+            height: calc(100vh - 4.5rem);
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle at center, rgba(94, 234, 212, 0.15) 0%, rgba(59, 130, 246, 0.05) 40%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(94, 234, 212, 0.7);
+        }
+
+        .hero-subheading {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--secondary-color);
+            height: 2.2rem;
+        }
+        
+        #animated-text {
+            color: var(--accent-color);
+            font-weight: 500;
+            border-right: 3px solid var(--accent-color);
+            animation: blinkCursor 0.7s infinite;
+            padding-right: 4px;
+            text-shadow: 0 0 10px rgba(94, 234, 212, 0.5);
+        }
+
+        .btn-resume {
+            background-color: var(--accent-color);
+            color: var(--bg-color-dark);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 15px rgba(94, 234, 212, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-resume:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(94, 234, 212, 0.3);
+        }
+
+        .btn-resume svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { border-right-color: var(--accent-color); }
+            50% { border-right-color: transparent; }
+        }
+
+        /* 4. About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .tilt-card {
+            transition: transform 0.15s ease-out;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .about-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .about-card h3 {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            color: var(--primary-color);
+        }
+
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .education-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .education-item p {
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+        }
+
+        /* 5. Experience Section */
+        .experience-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-header h3 {
+            margin-bottom: 0;
+            color: var(--primary-color);
+        }
+        
+        .experience-header span {
+            font-weight: 500;
+            color: var(--accent-color);
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .experience-card ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+
+        .experience-card li {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* 6. Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* 7. Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-content h3 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+        
+        .project-content p {
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+        }
+
+        .project-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* GitHub Icon specific styling */
+        .github-icon {
+            width: 20px; /* Adjust size as needed */
+            height: 20px;
+            margin-left: 0.5rem;
+            fill: currentColor; /* Inherit color from parent (project-link) */
+            vertical-align: middle;
+        }
+        .project-link {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            color: var(--accent-color);
+        }
+        
+        .project-link svg {
+            width: 20px;
+            height: 20px;
+            margin-left: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        /* 8. Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            max-width: 600px;
+            margin: 0 auto;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+        
+        .contact-item svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-color);
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 5px rgba(94, 234, 212, 0.5));
+        }
+
+        .contact-item p {
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+        
+        .contact-item a {
+            color: var(--secondary-color);
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 5px rgba(94, 234, 212, 0.5);
+        }
+
+        /* 9. Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+        
+        /* 10. Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-color-light);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+        /* 11. Responsive Design */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-subheading {
+                font-size: 1.25rem;
+                height: 1.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 4.5rem;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 4.5rem);
+                background-color: var(--bg-color-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.5rem;
+                transition: right 0.4s ease-in-out;
+            }
+
+            .nav-menu.nav-open {
+                right: 0;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+            
+            .nav-link {
+                font-size: 1.2rem;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .experience-header span {
+                margin-left: 0;
+            }
+
+            .contact-grid {
+                padding: 2rem;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="aurora-container">
+        <div id="aurora-bg"></div>
+    </div>
+
+    <!-- Header --><header class="header">
+        <nav class="navbar container">
+            <a href="#home" class="nav-logo">Emilin Sana K S<span></span></a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <!-- Simple CSS Hamburger Icon --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home / Hero Section --><section id="home">
+            <div class="container hero-content">
+                <h1>Emilin Sana K S</h1>
+                <div class="hero-subheading">
+                    <span id="animated-text"></span>
+                </div>
+                <button id="download-resume-btn" class="btn-resume">
+                    Download Resume
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- About Section --><section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-grid">
+                    <div class="about-card tilt-card">
+                        <h3>Who I Am</h3>
+                        <p>
+                            I am a motivated Information Technology undergraduate at Cochin University of Science and Technology, currently in my third semester. With a strong academic performance (9.6 GPA in S1, 9.8 in S2) and foundational experience in computational thinking and AI, I am deeply passionate about technology.
+                        </p>
+                        <p>
+                            I am skilled in programming, web development, and public speaking. I am actively seeking internship opportunities to apply my knowledge, gain hands-on industry experience, and contribute to meaningful projects.
+                        </p>
+                    </div>
+                    <div class="about-card tilt-card">
+                        <h3>Education</h3>
+                        <div class="education-item">
+                            <h4>B.Tech Information Technology</h4>
+                            <p>Cochin University of Science and Technology (CUSAT)</p>
+                            <p>Graduating 2028 | GPA: 9.6 (S1), 9.8 (S2)</p>
+                        </div>
+                        <div class="education-item">
+                            <h4>Higher Secondary, Computer Science</h4>
+                            <p>Sree Narayana Higher Secondary School (2022–2024)</p>
+                            <p>Overall Percentage: 99%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section --><section id="experience">
+            <div class="container">
+                <h2>Experience</h2>
+                <div class="experience-card tilt-card">
+                    <div class="experience-header">
+                        <h3>Intern @ MathWorks</h3>
+                        <span>June 2025</span>
+                    </div>
+                    <p style="font-weight: 500; color: var(--primary-color);">Introduction to Computational Thinking and Basics of Artificial Intelligence</p>
+                    <ul>
+                        <li>Applied core AI workflow concepts to build and simulate predictive models using MATLAB.</li>
+                        <li>Developed algorithmic models to solve computational problems.</li>
+                        <li>Visualized complex system behaviors and dynamic models using Simulink.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section --><section id="skills">
+            <div class="container">
+                <h2>My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category tilt-card">
+                        <h3>Programming</h3>
+                        <div class="skill-list">
+                            <span class="skill-badge">C++</span>
+                            <span class="skill-badge">Java</span>
+                        </div>
+                    </div>
+                    <div class="skill-category tilt-card">
+                        <h3>Web Development</h3>
+                        <div class="skill-list">
+                            <span class="skill-badge">HTML</span>
+                            <span class="skill-badge">CSS</span>
+                            <span class="skill-badge">Node.js</span>
+                            <span class="skill-badge">Flask</span>
+                            <span class="skill-badge">PHP</span>
+                        </div>
+                    </div>
+                    <div class="skill-category tilt-card">
+                        <h3>Hardware & Tools</h3>
+                        <div class="skill-list">
+                            <span class="skill-badge">Arduino</span>
+                            <span class="skill-badge">MATLAB</span>
+                            <span class="skill-badge">Simulink</span>
+                            <span class="skill-badge">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section --><section id="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <!-- Project 1 --><article class="project-card tilt-card">
+                        <div class="project-content">
+                            <h3>MCP Server (FastAPI)</h3>
+                            <p>A Python-based server providing real-time crypto prices, historical data, and WebSocket updates using FastAPI, Async CCXT, and in-memory caching.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Emilin24/MCPServer" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub
+                                <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.181 24 17.604 24 12 24 5.373 18.627 0 12 0Z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                    <!-- Project 2 --><article class="project-card tilt-card">
+                        <div class="project-content">
+                            <h3>CodeMosaic</h3>
+                            <p>Web application that generates a schedule of commit dates for users to create pixel art patterns on their GitHub contribution graph.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Emilin24/CodeMosaic" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub
+                                <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.181 24 17.604 24 12 24 5.373 18.627 0 12 0Z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                    <!-- Project 3 --><article class="project-card tilt-card">
+                        <div class="project-content">
+                            <h3>BrainWave</h3>
+                            <p>A template-based system using Flask to help users structure and organize project-specific ideas efficiently.</p>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Emilin24/brainwave" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub
+                                <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.181 24 17.604 24 12 24 5.373 18.627 0 12 0Z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section --><section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="contact-grid tilt-card">
+                    <div class="contact-info">
+                        <h3>Find Me Here</h3>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <p><a href="mailto:sanasiju84@gmail.com">sanasiju84@gmail.com</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <!-- Corrected GitHub Icon SVG --><svg class="github-icon-contact" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.181 24 17.604 24 12 24 5.373 18.627 0 12 0Z"/>
+                            </svg>
+                            <p><a href="https://github.com/Emilin24" target="_blank" rel="noopener noreferrer">github.com/Emilin24</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            <p><a href="https://www.linkedin.com/in/emilin-s-a71600312/" target="_blank" rel="noopener noreferrer">linkedin.com/in/emilin-s</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <p>Kochi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer --><footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Emilin Sana K S</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Hero Text Typing Animation ---
+            const animatedText = document.getElementById('animated-text');
+            const titles = [
+                "Full Stack Developer",
+                "Front End Developer",
+                "Back End Developer",
+                "API Developer",
+                "Problem Solver"
+            ];
+            let titleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100;
+            const deletingSpeed = 60;
+            const delay = 2000;
+
+            function type() {
+                const currentTitle = titles[titleIndex];
+                let displayText = '';
+
+                if (isDeleting) {
+                    displayText = currentTitle.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    displayText = currentTitle.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                animatedText.textContent = displayText;
+
+                let speed = isDeleting ? deletingSpeed : typingSpeed;
+
+                if (!isDeleting && charIndex === currentTitle.length) {
+                    speed = delay;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    titleIndex = (titleIndex + 1) % titles.length;
+                    speed = typingSpeed;
+                }
+
+                setTimeout(type, speed);
+            }
+            
+            type();
+
+
+            // --- Mobile Navigation Toggle ---
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = navMenu.querySelectorAll('.nav-link');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('nav-open');
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('nav-open')) {
+                        navMenu.classList.remove('nav-open');
+                    }
+                });
+            });
+
+
+            // --- Active Nav Link on Scroll ---
+            const sections = document.querySelectorAll('section');
+            const allNavLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        allNavLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+
+            // --- Download Resume Button ---
+            const downloadBtn = document.getElementById('download-resume-btn');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', () => {
+                    const link = document.createElement('a');
+                    link.href = 'assets/resume.pdf';
+                    link.download = 'Emilin_Sana_Resume.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
+
+            // --- 3D Tilt Card Effect ---
+            const tiltCards = document.querySelectorAll('.tilt-card');
+            
+            tiltCards.forEach(card => {
+                const maxTilt = 15;
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const { width, height } = rect;
+                    const middleX = width / 2;
+                    const middleY = height / 2;
+                    
+                    const rotateX = ((y - middleY) / middleY) * -maxTilt;
+                    const rotateY = ((x - middleX) / middleX) * maxTilt;
+                    
+                    card.style.transform = `perspective(1000px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) scale(1) rotateX(0) rotateY(0)';
+                });
+            });
+
+            // --- Aurora Scroll Effect ---
+            const auroraBg = document.getElementById('aurora-bg');
+            if (auroraBg) {
+                let lastScrollY = window.scrollY;
+                let ticking = false;
+                const parallaxFactor = 0.05;
+
+                const updateAurora = () => {
+                    const moveY = lastScrollY * parallaxFactor;
+                    auroraBg.style.transform = `translateY(-${moveY}px)`;
+                    ticking = false;
+                };
+
+                window.addEventListener('scroll', () => {
+                    lastScrollY = window.scrollY;
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateAurora);
+                        ticking = true;
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
